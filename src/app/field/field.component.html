@@ -1,19 +1,29 @@
 <div class="{{fieldData.containerClass}}" [formGroup]="formGroup">
   <label for="{{fieldData.id}}">{{fieldData.label}}</label>
-  <input 
-    type="{{fieldData.inputType}}" 
-    class="fieldData.readonly ? 'form-control-plaintext' : {{fieldData.fieldClass}}"
-    [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)"
-    id="{{fieldData.id}}" 
-    attr.aria-describedby="{{fieldData.help}}"
-    placeholder="{{fieldData.placeholder}}" 
-    formControlName="{{fieldData.name}}" 
-    value="{{fieldData.value}}">
-  <small class="form-text text-muted">{{fieldData.smallText}}</small>
-  <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
-    {{fieldData.label}} is required.
+  <div *ngIf="fieldData.type === fieldType.TEXT || fieldData.type === fieldType.INTEGER || fieldData.type === fieldType.DOUBLE || fieldData.type === fieldType.CURRENCY || fieldData.type === fieldType.EMAIL">
+    <input type="{{fieldData.inputType}}" class="fieldData.readonly ? 'form-control-plaintext' : {{fieldData.fieldClass}}"
+      [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)" id="{{fieldData.id}}"
+      attr.aria-describedby="{{fieldData.help}}" placeholder="{{fieldData.placeholder}}" formControlName="{{fieldData.name}}"
+      value="{{fieldData.value}}">
+    <small class="form-text text-muted">{{fieldData.smallText}}</small>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
+      {{fieldData.label}} is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.maxlength">
+      {{fieldData.label}} is too long.
+    </div>
   </div>
-  <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.maxlength">
-    {{fieldData.label}} is too long.
+  <div *ngIf="fieldData.type === fieldType.DROPDOWN">
+    <select class="fieldData.readonly ? 'form-control-plaintext' : {{fieldData.fieldClass}}" [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)"
+      id="{{fieldData.id}}" attr.aria-describedby="{{fieldData.help}}" formControlName="{{fieldData.name}}">
+      <option *ngFor="let option of fieldData.options" [value]="option.value" [selected]="fieldData.value === option.value">{{option.label}}</option>
+    </select>
+    <small class="form-text text-muted">{{fieldData.smallText}}</small>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
+      {{fieldData.label}} is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.maxlength">
+      {{fieldData.label}} is too long.
+    </div>
   </div>
 </div>

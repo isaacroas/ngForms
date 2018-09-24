@@ -29,7 +29,8 @@ export class FormComponent implements OnInit {
       label: "Name",
       placeholder: "Name",
       smallText: "This is a small text for Name",
-      help: "This is a help text for Name"
+      help: "This is a help text for Name",
+      options: null
     };
     this.fields.push(FieldData.fromJson(nameField));
     let lastnameField = {
@@ -43,9 +44,34 @@ export class FormComponent implements OnInit {
       label: "Last Name",
       placeholder: "Last Name",
       smallText: "This is a small text for Last Name",
-      help: "This is a help text for Last Name"
+      help: "This is a help text for Last Name",
+      options: null
     };
     this.fields.push(FieldData.fromJson(lastnameField));
+    let dropdownField = {
+      id: "dropdownId",
+      name: "dropdown",
+      type: FieldType.DROPDOWN,
+      value: null,
+      isRequired: true,
+      readonly: this.readonly,
+      maxLength: 250,
+      label: "Dropdown",
+      placeholder: "Dropdown",
+      smallText: "This is a small text for Dropdown",
+      help: "This is a help text for Dropdown",
+      options: [{
+        value: 1,
+        label: "Spain"
+      }, {
+        value: 2,
+        label: "France"
+      }, {
+        value: 3,
+        label: "USA"
+      }]
+    };
+    this.fields.push(FieldData.fromJson(dropdownField));
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];
