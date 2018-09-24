@@ -1,0 +1,10 @@
+<div class="card">
+  <div *ngIf="cardData.header" class="card-header">
+    {{cardData.header}}
+  </div>
+  <div class="card-body">
+    <h5 *ngIf="cardData.title" class="card-title">{{cardData.title}}</h5>
+    <p *ngIf="cardData.text" class="card-text">{{cardData.text}}</p>
+    <app-field *ngFor="let f of cardData.fields" [fieldData]="f" [formGroup]="formGroup" [readonly]="cardData.readonly"></app-field>
+  </div>
+</div>
