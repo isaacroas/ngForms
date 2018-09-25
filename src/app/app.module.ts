@@ -8,7 +8,7 @@ import { CardComponent } from './card/card.component';
 import { FieldComponent } from './field/field.component';
 import { FieldTextComponent } from './field-types/field-text/field-text.component';
 import { FieldDropdownComponent } from './field-types/field-dropdown/field-dropdown.component';
-import { FieldRadioComponent } from './field-types/field-radio/field-radio.component';
+import { FieldRadioCheckComponent } from './field-types/field-radio-check/field-radio-check.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { FieldRadioComponent } from './field-types/field-radio/field-radio.compo
     FieldComponent,
     FieldTextComponent,
     FieldDropdownComponent,
-    FieldRadioComponent
+    FieldRadioCheckComponent
   ],
   imports: [
     BrowserModule,

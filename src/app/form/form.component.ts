@@ -95,6 +95,30 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(radioField));
+    let checkField = {
+      id: "checkId",
+      name: "check",
+      type: FieldType.CHECK,
+      value: 2,
+      isRequired: true,
+      readonly: this.readonly,
+      maxLength: 250,
+      label: "Check",
+      placeholder: "Check",
+      smallText: "This is a small text for Check",
+      help: "This is a help text for Check",
+      options: [{
+        value: 1,
+        label: "Spain"
+      }, {
+        value: 2,
+        label: "France"
+      }, {
+        value: 3,
+        label: "USA"
+      }]
+    };
+    this.fields.push(FieldData.fromJson(checkField));
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];
