@@ -36,17 +36,17 @@ export class FieldData extends FormControl {
     options: Option[];
 
     constructor(id: string,
-                name: string,
-                type: FieldType,
-                value: string | number,
-                isRequired: boolean,
-                readonly: boolean,
-                maxLength: number,
-                label: string,
-                placeholder: string,
-                smallText: string,
-                help: string,
-                options: Option[]) {
+        name: string,
+        type: FieldType,
+        value: string | number,
+        isRequired: boolean,
+        readonly: boolean,
+        maxLength: number,
+        label: string,
+        placeholder: string,
+        smallText: string,
+        help: string,
+        options: Option[]) {
         super();
         this.id = id;
         this.name = name;
@@ -63,6 +63,7 @@ export class FieldData extends FormControl {
 
         this.initValidators();
         this.initInputType();
+        this.initClass();
     }
 
     static fromJson(json: { id: string, name: string, type: FieldType, value: string | number, isRequired: boolean, readonly: boolean, maxLength: number, label: string, placeholder: string, smallText: string, help: string, options: Option[] }): FieldData {
@@ -138,7 +139,7 @@ export class FieldData extends FormControl {
                 break;
             }
             case FieldType.RADIO: {
-                // this._inputType = "radio";
+                this._inputType = "radio";
                 break;
             }
             case FieldType.DROPDOWN: {
@@ -156,6 +157,13 @@ export class FieldData extends FormControl {
                 //statements; 
                 break;
             }
+        }
+    }
+
+    initClass() {
+        if (FieldType.RADIO === this.type) {
+            this.fieldClass = "form-check-input";
+            this.containerClass = "form-check form-check-inline";
         }
     }
 
