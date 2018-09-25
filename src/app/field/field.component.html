@@ -1,10 +1,11 @@
 <div class="{{fieldData.containerClass}}" [formGroup]="formGroup">
-  <label for="{{fieldData.id}}">{{fieldData.label}}</label>
   <div *ngIf="fieldData.type === fieldType.TEXT || fieldData.type === fieldType.INTEGER || fieldData.type === fieldType.DOUBLE || fieldData.type === fieldType.CURRENCY || fieldData.type === fieldType.EMAIL">
-    <input type="{{fieldData.inputType}}" class="fieldData.readonly ? 'form-control-plaintext' : {{fieldData.fieldClass}}"
+    <label for="{{fieldData.id}}">{{fieldData.label}}</label>
+    <input type="{{fieldData.inputType}}" class="{{fieldData.fieldClass}}" [attr.disabled]="fieldData.readonly ? 'true' : null"
       [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)" id="{{fieldData.id}}"
       attr.aria-describedby="{{fieldData.help}}" placeholder="{{fieldData.placeholder}}" formControlName="{{fieldData.name}}"
       value="{{fieldData.value}}">
+    <label *ngIf="fieldData.type === fieldType.RADIO" class="form-check-label" for="{{fieldData.id}}">{{fieldData.label}}</label>
     <small class="form-text text-muted">{{fieldData.smallText}}</small>
     <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
       {{fieldData.label}} is required.
@@ -14,10 +15,27 @@
     </div>
   </div>
   <div *ngIf="fieldData.type === fieldType.DROPDOWN">
+    <label for="{{fieldData.id}}">{{fieldData.label}}</label>
     <select class="fieldData.readonly ? 'form-control-plaintext' : {{fieldData.fieldClass}}" [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)"
       id="{{fieldData.id}}" attr.aria-describedby="{{fieldData.help}}" formControlName="{{fieldData.name}}">
       <option *ngFor="let option of fieldData.options" [value]="option.value" [selected]="fieldData.value === option.value">{{option.label}}</option>
     </select>
+    <small class="form-text text-muted">{{fieldData.smallText}}</small>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
+      {{fieldData.label}} is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.maxlength">
+      {{fieldData.label}} is too long.
+    </div>
+  </div>
+  <div *ngIf="fieldData.type === fieldType.RADIO">
+    <div *ngFor="let option of fieldData.options">
+      <input type="{{fieldData.inputType}}" class="{{fieldData.fieldClass}}" [attr.disabled]="fieldData.readonly ? 'true' : null"
+        [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)" id="{{fieldData.id}}_{{option.value}}"
+        attr.aria-describedby="{{fieldData.help}}" placeholder="{{fieldData.placeholder}}" formControlName="{{fieldData.name}}"
+        name="{{fieldData.name}}" value="{{option.value}}" [attr.checked]="option.value === fieldData.value ? 'true' : null">
+      <label class="form-check-label" for="{{fieldData.id}}_{{option.value}}">{{option.label}}</label>
+    </div>
     <small class="form-text text-muted">{{fieldData.smallText}}</small>
     <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
       {{fieldData.label}} is required.

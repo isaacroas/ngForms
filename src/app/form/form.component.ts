@@ -52,7 +52,7 @@ export class FormComponent implements OnInit {
       id: "dropdownId",
       name: "dropdown",
       type: FieldType.DROPDOWN,
-      value: null,
+      value: 2,
       isRequired: true,
       readonly: this.readonly,
       maxLength: 250,
@@ -72,6 +72,30 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(dropdownField));
+    let radioField = {
+      id: "radioId",
+      name: "radio",
+      type: FieldType.RADIO,
+      value: 2,
+      isRequired: true,
+      readonly: this.readonly,
+      maxLength: 250,
+      label: "Radio",
+      placeholder: "Radio",
+      smallText: "This is a small text for Radio",
+      help: "This is a help text for Radio",
+      options: [{
+        value: 1,
+        label: "Spain"
+      }, {
+        value: 2,
+        label: "France"
+      }, {
+        value: 3,
+        label: "USA"
+      }]
+    };
+    this.fields.push(FieldData.fromJson(radioField));
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];
