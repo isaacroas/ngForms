@@ -4,8 +4,7 @@ import { CardData } from '../form-model/card-data.model';
 
 @Component({
   selector: 'app-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  templateUrl: './card.component.html'
 })
 export class CardComponent implements OnInit {
 

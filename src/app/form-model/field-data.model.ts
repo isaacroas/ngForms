@@ -34,6 +34,7 @@ export class FieldData extends FormControl {
     fieldClass: string = "form-control";
     containerClass: string = "form-group";
     options: Option[];
+    radioItemClass: string = "form-check form-check-inline";
 
     constructor(id: string,
         name: string,
@@ -163,7 +164,6 @@ export class FieldData extends FormControl {
     initClass() {
         if (FieldType.RADIO === this.type) {
             this.fieldClass = "form-check-input";
-            this.containerClass = "form-check form-check-inline";
         }
     }
 

@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
 import { CardComponent } from './card/card.component';
 import { FieldComponent } from './field/field.component';
+import { FieldTextComponent } from './field-types/field-text/field-text.component';
+import { FieldDropdownComponent } from './field-types/field-dropdown/field-dropdown.component';
+import { FieldRadioComponent } from './field-types/field-radio/field-radio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormComponent,
     CardComponent,
-    FieldComponent
+    FieldComponent,
+    FieldTextComponent,
+    FieldDropdownComponent,
+    FieldRadioComponent
   ],
   imports: [
     BrowserModule,
