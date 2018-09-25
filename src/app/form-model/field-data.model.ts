@@ -147,7 +147,7 @@ export class FieldData extends FormControl {
                 break;
             }
             case FieldType.CHECK: {
-                // TODO this._inputType = "";
+                this._inputType = "checkbox";
                 break;
             }
             case FieldType.FILE: {
@@ -162,7 +162,7 @@ export class FieldData extends FormControl {
     }
 
     initClass() {
-        if (FieldType.RADIO === this.type) {
+        if (FieldType.RADIO === this.type || FieldType.CHECK === this.type) {
             this.fieldClass = "form-check-input";
         }
     }
