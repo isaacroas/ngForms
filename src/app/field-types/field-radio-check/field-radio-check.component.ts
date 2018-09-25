@@ -3,6 +3,6 @@ import { BaseField } from '../base-field.abstract';
 
 @Component({
   selector: 'app-field-radio',
-  templateUrl: './field-radio.component.html'
+  templateUrl: './field-radio-check.component.html'
 })
-export class FieldRadioComponent extends BaseField { }
+export class FieldRadioCheckComponent extends BaseField { }
