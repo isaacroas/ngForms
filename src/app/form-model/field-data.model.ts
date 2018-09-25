@@ -1,4 +1,5 @@
 import { FormControl, Validators, ValidatorFn } from "@angular/forms";
+import { Option } from "./option.model";
 
 export enum FieldType {
     TEXT = 1,
@@ -6,8 +7,12 @@ export enum FieldType {
     DOUBLE = 3,
     CURRENCY = 4,
     EMAIL = 5,
-    RADIO = 6,
-    DROPDOWN = 7
+    DATE = 6,
+    SECRET = 7,
+    RADIO = 8,
+    DROPDOWN = 9,
+    CHECK = 10,
+    FILE = 11
 }
 
 export class FieldData extends FormControl {
@@ -15,7 +20,7 @@ export class FieldData extends FormControl {
     id: string;
     name: string;
     type: FieldType;
-    value: string;
+    value: string | number;
     isRequired: boolean;
     readonly: boolean;
     maxLength: number;
@@ -28,20 +33,21 @@ export class FieldData extends FormControl {
     get inputType(): string { return this._inputType; };
     fieldClass: string = "form-control";
     containerClass: string = "form-group";
+    options: Option[];
+    radioItemClass: string = "form-check form-check-inline";
 
-    constructor(
-        id: string,
+    constructor(id: string,
         name: string,
         type: FieldType,
-        value: string,
+        value: string | number,
         isRequired: boolean,
         readonly: boolean,
         maxLength: number,
         label: string,
         placeholder: string,
         smallText: string,
-        help: string) {
-
+        help: string,
+        options: Option[]) {
         super();
         this.id = id;
         this.name = name;
@@ -54,13 +60,15 @@ export class FieldData extends FormControl {
         this.placeholder = placeholder;
         this.smallText = smallText;
         this.help = help;
+        this.options = options;
 
         this.initValidators();
         this.initInputType();
+        this.initClass();
     }
 
-    static fromJson(json: {id: string, name: string, type: FieldType, value: string, isRequired: boolean, readonly: boolean, maxLength: number, label: string, placeholder: string, smallText: string, help: string}): FieldData {
-        return new FieldData(json.id, json.name, json.type, json.value, json.isRequired, json.readonly, json.maxLength, json.label, json.placeholder, json.smallText, json.help);
+    static fromJson(json: { id: string, name: string, type: FieldType, value: string | number, isRequired: boolean, readonly: boolean, maxLength: number, label: string, placeholder: string, smallText: string, help: string, options: Option[] }): FieldData {
+        return new FieldData(json.id, json.name, json.type, json.value, json.isRequired, json.readonly, json.maxLength, json.label, json.placeholder, json.smallText, json.help, json.options);
     }
 
     private initValidators() {
@@ -86,6 +94,10 @@ export class FieldData extends FormControl {
             }
             case FieldType.EMAIL: {
                 this.validators.push(Validators.email);
+                break;
+            }
+            case FieldType.DATE: {
+                // this.validators.push(DateValidator);
                 break;
             }
             default: {
@@ -119,18 +131,39 @@ export class FieldData extends FormControl {
                 this._inputType = "email";
                 break;
             }
+            case FieldType.DATE: {
+                // TODO this._inputType = "email";
+                break;
+            }
+            case FieldType.SECRET: {
+                this._inputType = "password";
+                break;
+            }
             case FieldType.RADIO: {
                 this._inputType = "radio";
                 break;
             }
             case FieldType.DROPDOWN: {
+                break;
+            }
+            case FieldType.CHECK: {
                 // TODO this._inputType = "";
+                break;
+            }
+            case FieldType.FILE: {
+                this._inputType = "file";
                 break;
             }
             default: {
                 //statements; 
                 break;
             }
+        }
+    }
+
+    initClass() {
+        if (FieldType.RADIO === this.type) {
+            this.fieldClass = "form-check-input";
         }
     }
 

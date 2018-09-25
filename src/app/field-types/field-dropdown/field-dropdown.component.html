@@ -1,0 +1,14 @@
+<div class="{{fieldData.containerClass}}" [formGroup]="formGroup">
+  <label for="{{fieldData.id}}">{{fieldData.label}}</label>
+  <select class="fieldData.readonly ? 'form-control-plaintext' : {{fieldData.fieldClass}}" [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)"
+    id="{{fieldData.id}}" attr.aria-describedby="{{fieldData.help}}" formControlName="{{fieldData.name}}">
+    <option *ngFor="let option of fieldData.options" [value]="option.value" [selected]="fieldData.value === option.value">{{option.label}}</option>
+  </select>
+  <small class="form-text text-muted">{{fieldData.smallText}}</small>
+  <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
+    {{fieldData.label}} is required.
+  </div>
+  <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.maxlength">
+    {{fieldData.label}} is too long.
+  </div>
+</div>

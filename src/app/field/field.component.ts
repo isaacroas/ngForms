@@ -4,8 +4,7 @@ import { FieldData, FieldType } from '../form-model/field-data.model';
 
 @Component({
   selector: 'app-field',
-  templateUrl: './field.component.html',
-  styleUrls: ['./field.component.css']
+  templateUrl: './field.component.html'
 })
 export class FieldComponent implements OnInit {
 
