@@ -1,0 +1,17 @@
+<div class="{{fieldData.containerClass}}" [formGroup]="formGroup">
+  <label for="{{fieldData.id}}">{{fieldData.label}}</label>
+  <div class="{{fieldData.fileContainerClass}}" [formGroup]="formGroup">
+    <input type="{{fieldData.inputType}}" class="{{fieldData.fileInputClass}}" id="{{fieldData.id}}" [attr.disabled]="fieldData.readonly ? 'true' : null"
+      [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)" id="{{fieldData.id}}"
+      attr.aria-describedby="{{fieldData.help}}" formControlName="{{fieldData.name}}">
+    <label class="{{fieldData.fileLabelClass}}" for="{{fieldData.id}}">{{fieldData.value ? fieldData.value :
+      fieldData.placeholder }}</label>
+    <small class="form-text text-muted">{{fieldData.smallText}}</small>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
+      {{fieldData.label}} is required.
+    </div>
+    <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.maxlength">
+      {{fieldData.label}} is too long.
+    </div>
+  </div>
+</div>

@@ -7,3 +7,6 @@
 <app-field-radio *ngIf="fieldData.type === fieldType.RADIO || fieldData.type === fieldType.CHECK" [fieldData]="fieldData"
   [formGroup]="formGroup" [readonly]="readonly">
 </app-field-radio>
+<app-field-file *ngIf="fieldData.type === fieldType.FILE"
+  [fieldData]="fieldData" [formGroup]="formGroup" [readonly]="readonly">
+</app-field-file>

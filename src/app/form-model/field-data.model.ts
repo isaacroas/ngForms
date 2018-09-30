@@ -35,6 +35,9 @@ export class FieldData extends FormControl {
     containerClass: string = "form-group";
     options: Option[];
     radioItemClass: string = "form-check form-check-inline";
+    fileContainerClass: string = "custom-file";
+    fileInputClass: string = "custom-file-input";
+    fileLabelClass: string = "custom-file-label";
 
     constructor(name: string,
         value: string | number = undefined,
