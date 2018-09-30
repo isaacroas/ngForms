@@ -1,6 +1,7 @@
 import { Input, OnInit } from "@angular/core";
-import { FieldData, FieldType } from "../form-model/field-data.model";
+import { FieldData } from "../form-model/field-data.model";
 import { FormGroup } from "@angular/forms";
+import { FieldType } from "../form-model/field-type.enum";
 
 export abstract class BaseField implements OnInit {
 
