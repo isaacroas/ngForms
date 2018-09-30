@@ -15,7 +15,9 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.cardData.readonly = this.readonly;
+    if (this.cardData.readonly === undefined) {
+      this.cardData.readonly = this.readonly;
+    }
   }
 
 }

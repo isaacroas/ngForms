@@ -1,27 +1,14 @@
 import { FormControl, Validators, ValidatorFn } from "@angular/forms";
 import { Option } from "./option.model";
-
-export enum FieldType {
-    TEXT = 1,
-    INTEGER = 2,
-    DOUBLE = 3,
-    CURRENCY = 4,
-    EMAIL = 5,
-    DATE = 6,
-    SECRET = 7,
-    RADIO = 8,
-    DROPDOWN = 9,
-    CHECK = 10,
-    FILE = 11
-}
+import { FieldType } from "./field-type.enum";
 
 export class FieldData extends FormControl {
 
     id: string;
     name: string;
-    type: FieldType;
+    type: FieldType = FieldType.TEXT;
     value: string | number;
-    isRequired: boolean;
+    isRequired: boolean = false;
     readonly: boolean;
     maxLength: number;
     label: string;
@@ -40,17 +27,17 @@ export class FieldData extends FormControl {
     fileLabelClass: string = "custom-file-label";
 
     constructor(name: string,
-        value: string | number = undefined,
-        label: string = undefined,
-        type: FieldType = FieldType.TEXT,
-        isRequired: boolean = false,
-        readonly: boolean = false,
-        maxLength: number = undefined,
-        placeholder: string = undefined,
-        id: string = name,
-        smallText: string = undefined,
-        help: string = undefined,
-        options: Option[] = undefined) {
+        value?: string | number,
+        label?: string,
+        type?: FieldType,
+        isRequired?: boolean,
+        readonly?: boolean,
+        maxLength?: number,
+        placeholder?: string,
+        id?: string,
+        smallText?: string,
+        help?: string,
+        options?: Option[]) {
         super();
         this.id = id;
         this.name = name;
@@ -64,6 +51,10 @@ export class FieldData extends FormControl {
         this.smallText = smallText;
         this.help = help;
         this.options = options;
+
+        if (!this.id) {
+            this.id = this.name;
+        }
 
         this.initValidators();
         this.initInputType();
