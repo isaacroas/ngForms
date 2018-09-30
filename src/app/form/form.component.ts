@@ -17,6 +17,7 @@ export class FormComponent implements OnInit {
 
   constructor() {
     this.fields = [];
+    
     let nameField = {
       id: "nameId",
       name: "name",
@@ -32,6 +33,7 @@ export class FormComponent implements OnInit {
       options: null
     };
     this.fields.push(FieldData.fromJson(nameField));
+    
     let lastnameField = {
       id: "lastnameId",
       name: "lastname",
@@ -47,6 +49,7 @@ export class FormComponent implements OnInit {
       options: null
     };
     this.fields.push(FieldData.fromJson(lastnameField));
+    
     let dropdownField = {
       id: "dropdownId",
       name: "dropdown",
@@ -71,6 +74,7 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(dropdownField));
+    
     let radioField = {
       id: "radioId",
       name: "radio",
@@ -95,6 +99,7 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(radioField));
+    
     let checkField = {
       id: "checkId",
       name: "check",
@@ -119,6 +124,7 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(checkField));
+    
     let dateField = {
       id: "dateId",
       name: "date",
@@ -134,9 +140,26 @@ export class FormComponent implements OnInit {
       options: null
     };
     this.fields.push(FieldData.fromJson(dateField));
+    
     let defaultValuesField: FieldData = new FieldData("defaultValuesField");
     defaultValuesField.label = "Field with default values";
     this.fields.push(defaultValuesField);
+
+    let fileField = {
+      id: "fileId",
+      name: "file",
+      type: FieldType.FILE,
+      value: null,
+      isRequired: true,
+      readonly: this.readonly,
+      maxLength: null,
+      label: "File",
+      placeholder: "Choose a file",
+      smallText: "This is a small text for File",
+      help: "This is a help text for File",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(fileField));
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];
