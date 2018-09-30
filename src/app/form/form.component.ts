@@ -134,6 +134,9 @@ export class FormComponent implements OnInit {
       options: null
     };
     this.fields.push(FieldData.fromJson(dateField));
+    let defaultValuesField: FieldData = new FieldData("defaultValuesField");
+    defaultValuesField.label = "Field with default values";
+    this.fields.push(defaultValuesField);
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];
