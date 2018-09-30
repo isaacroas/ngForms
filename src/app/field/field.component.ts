@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldData, FieldType } from '../form-model/field-data.model';
+import { FieldData } from '../form-model/field-data.model';
+import { FieldType } from '../form-model/field-type.enum';
 
 @Component({
   selector: 'app-field',
@@ -16,7 +17,9 @@ export class FieldComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.fieldData.readonly = this.readonly;
+    if (this.fieldData.readonly === undefined) {
+      this.fieldData.readonly = this.readonly;
+    }
   }
 
 }
