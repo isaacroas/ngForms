@@ -119,6 +119,24 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(checkField));
+    let dateField = {
+      id: "dateId",
+      name: "date",
+      type: FieldType.DATE,
+      value: "31/12/2018",
+      isRequired: true,
+      readonly: this.readonly,
+      maxLength: 10,
+      label: "Date",
+      placeholder: "mm/dd/yyyy",
+      smallText: "This is a small text for Date",
+      help: "This is a help text for Date",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(dateField));
+    let defaultValuesField: FieldData = new FieldData("defaultValuesField");
+    defaultValuesField.label = "Field with default values";
+    this.fields.push(defaultValuesField);
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];

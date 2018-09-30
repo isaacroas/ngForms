@@ -36,18 +36,18 @@ export class FieldData extends FormControl {
     options: Option[];
     radioItemClass: string = "form-check form-check-inline";
 
-    constructor(id: string,
-        name: string,
-        type: FieldType,
-        value: string | number,
-        isRequired: boolean,
-        readonly: boolean,
-        maxLength: number,
-        label: string,
-        placeholder: string,
-        smallText: string,
-        help: string,
-        options: Option[]) {
+    constructor(name: string,
+        value: string | number = undefined,
+        label: string = undefined,
+        type: FieldType = FieldType.TEXT,
+        isRequired: boolean = false,
+        readonly: boolean = false,
+        maxLength: number = undefined,
+        placeholder: string = undefined,
+        id: string = name,
+        smallText: string = undefined,
+        help: string = undefined,
+        options: Option[] = undefined) {
         super();
         this.id = id;
         this.name = name;
@@ -67,8 +67,8 @@ export class FieldData extends FormControl {
         this.initClass();
     }
 
-    static fromJson(json: { id: string, name: string, type: FieldType, value: string | number, isRequired: boolean, readonly: boolean, maxLength: number, label: string, placeholder: string, smallText: string, help: string, options: Option[] }): FieldData {
-        return new FieldData(json.id, json.name, json.type, json.value, json.isRequired, json.readonly, json.maxLength, json.label, json.placeholder, json.smallText, json.help, json.options);
+    static fromJson(json: { name: string, id: string, type: FieldType, value: string | number, isRequired: boolean, readonly: boolean, maxLength: number, label: string, placeholder: string, smallText: string, help: string, options: Option[] }): FieldData {
+        return new FieldData(json.name, json.value, json.label, json.type, json.isRequired, json.readonly, json.maxLength, json.placeholder, json.id, json.smallText, json.help, json.options);
     }
 
     private initValidators() {
@@ -132,7 +132,7 @@ export class FieldData extends FormControl {
                 break;
             }
             case FieldType.DATE: {
-                // TODO this._inputType = "email";
+                this._inputType = "date";
                 break;
             }
             case FieldType.SECRET: {
