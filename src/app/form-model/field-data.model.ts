@@ -132,7 +132,7 @@ export class FieldData extends FormControl {
                 break;
             }
             case FieldType.DATE: {
-                // TODO this._inputType = "email";
+                this._inputType = "date";
                 break;
             }
             case FieldType.SECRET: {
