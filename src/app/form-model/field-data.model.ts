@@ -10,7 +10,7 @@ export class FieldData extends FormControl {
     value: string | number;
     isRequired: boolean = false;
     readonly: boolean;
-    maxLength: number;
+    maxlength: number;
     label: string;
     placeholder: string;
     smallText: string;
@@ -32,7 +32,7 @@ export class FieldData extends FormControl {
         type?: FieldType,
         isRequired?: boolean,
         readonly?: boolean,
-        maxLength?: number,
+        maxlength?: number,
         placeholder?: string,
         id?: string,
         smallText?: string,
@@ -45,7 +45,7 @@ export class FieldData extends FormControl {
         this.value = value;
         this.isRequired = isRequired;
         this.readonly = readonly;
-        this.maxLength = maxLength;
+        this.maxlength = maxlength;
         this.label = label;
         this.placeholder = placeholder;
         this.smallText = smallText;
@@ -61,8 +61,8 @@ export class FieldData extends FormControl {
         this.initClass();
     }
 
-    static fromJson(json: { name: string, id: string, type: FieldType, value: string | number, isRequired: boolean, readonly: boolean, maxLength: number, label: string, placeholder: string, smallText: string, help: string, options: Option[] }): FieldData {
-        return new FieldData(json.name, json.value, json.label, json.type, json.isRequired, json.readonly, json.maxLength, json.placeholder, json.id, json.smallText, json.help, json.options);
+    static fromJson(json: { name: string, id: string, type: FieldType, value: string | number, isRequired: boolean, readonly: boolean, maxlength: number, label: string, placeholder: string, smallText: string, help: string, options: Option[] }): FieldData {
+        return new FieldData(json.name, json.value, json.label, json.type, json.isRequired, json.readonly, json.maxlength, json.placeholder, json.id, json.smallText, json.help, json.options);
     }
 
     private initValidators() {
@@ -70,20 +70,16 @@ export class FieldData extends FormControl {
         if (this.isRequired === true) {
             this.validators.push(Validators.required);
         }
-        if (this.maxLength) {
-            this.validators.push(Validators.maxLength(this.maxLength));
+        if (this.maxlength) {
+            this.validators.push(Validators.maxLength(this.maxlength));
         }
         switch (this.type) {
             case FieldType.INTEGER: {
                 // TODO this.validators.push(IntegerValidator);
                 break;
             }
-            case FieldType.DOUBLE: {
+            case FieldType.DECIMAL: {
                 // TODO this.validators.push(DoubleValidator);
-                break;
-            }
-            case FieldType.CURRENCY: {
-                // TODO this.validators.push(CurrencyValidator);
                 break;
             }
             case FieldType.EMAIL: {
@@ -109,16 +105,12 @@ export class FieldData extends FormControl {
                 break;
             }
             case FieldType.INTEGER: {
-                this._inputType = "number";
+                this._inputType = "text";
                 break;
             }
             
-            case FieldType.DOUBLE: {
-                this._inputType = "number";
-                break;
-            }
-            case FieldType.CURRENCY: {
-                this._inputType = "number";
+            case FieldType.DECIMAL: {
+                this._inputType = "text";
                 break;
             }
             case FieldType.EMAIL: {
