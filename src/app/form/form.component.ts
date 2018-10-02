@@ -28,7 +28,7 @@ export class FormComponent implements OnInit {
       value: "John",
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Name",
       placeholder: "Name",
       smallText: "This is a small text for Name",
@@ -37,6 +37,22 @@ export class FormComponent implements OnInit {
     };
     this.fields.push(FieldData.fromJson(nameField));
 
+    let integerField = {
+      id: "integerId",
+      name: "integer",
+      type: FieldType.INTEGER,
+      value: null,
+      isRequired: true,
+      readonly: this.readonly,
+      maxlength: 10,
+      label: "Integer",
+      placeholder: "Integer",
+      smallText: "This is a small text for Integer",
+      help: "This is a help text for Integer",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(integerField));
+
     let lastnameField = {
       id: "lastnameId",
       name: "lastname",
@@ -44,7 +60,7 @@ export class FormComponent implements OnInit {
       value: "Doe",
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Last Name",
       placeholder: "Last Name",
       smallText: "This is a small text for Last Name",
@@ -60,7 +76,7 @@ export class FormComponent implements OnInit {
       value: 2,
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Dropdown",
       placeholder: "Dropdown",
       smallText: "This is a small text for Dropdown",
@@ -85,7 +101,7 @@ export class FormComponent implements OnInit {
       value: 2,
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Radio",
       placeholder: "Radio",
       smallText: "This is a small text for Radio",
@@ -110,7 +126,7 @@ export class FormComponent implements OnInit {
       value: 2,
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Check",
       placeholder: "Check",
       smallText: "This is a small text for Check",
@@ -135,7 +151,7 @@ export class FormComponent implements OnInit {
       value: "31/12/2018",
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 10,
+      maxlength: 10,
       label: "Date",
       placeholder: "mm/dd/yyyy",
       smallText: "This is a small text for Date",
@@ -155,7 +171,7 @@ export class FormComponent implements OnInit {
       value: null,
       isRequired: true,
       readonly: this.readonly,
-      maxLength: null,
+      maxlength: null,
       label: "File",
       placeholder: "Choose a file",
       smallText: "This is a small text for File",

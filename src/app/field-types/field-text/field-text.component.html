@@ -3,7 +3,8 @@
   <input type="{{fieldData.inputType}}" class="{{fieldData.fieldClass}}" [attr.disabled]="fieldData.readonly ? 'true' : null"
     [class.is-invalid]="fieldData.invalid && (fieldData.dirty || fieldData.touched)" id="{{fieldData.id}}"
     attr.aria-describedby="{{fieldData.help}}" placeholder="{{fieldData.placeholder}}" formControlName="{{fieldData.name}}"
-    value="{{fieldData.value}}">
+    value="{{fieldData.value}}" 
+    (keypress)="onKeyPress($event)" (paste)="onPaste($event)" [maxlength]="fieldData.maxlength">
   <small class="form-text text-muted">{{fieldData.smallText}}</small>
   <div class="invalid-feedback" *ngIf="fieldData.errors && fieldData.errors.required">
     {{fieldData.label}} is required.

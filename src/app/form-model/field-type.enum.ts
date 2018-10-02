@@ -1,8 +1,7 @@
 export enum FieldType {
     TEXT = 1,
     INTEGER = 2,
-    DOUBLE = 3,
-    CURRENCY = 4,
+    DECIMAL = 3,
     EMAIL = 5,
     DATE = 6,
     SECRET = 7,
