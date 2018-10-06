@@ -21,6 +21,9 @@ export class FieldTextComponent extends BaseField {
       case FieldType.INTEGER:
         result = this.onKeyPressInteger($event);
         break;
+      case FieldType.DECIMAL:
+        result = this.onKeyPressDecimal($event);
+        break;
       default:
         result = true;
         break;
@@ -30,6 +33,17 @@ export class FieldTextComponent extends BaseField {
 
   onKeyPressInteger($event: KeyboardEvent): boolean {
     if ($event.keyCode < 48 || $event.keyCode > 57) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  onKeyPressDecimal($event: KeyboardEvent): boolean {
+    console.log($event.keyCode);
+    if ($event.keyCode === 46 && this.fieldData.value.toString().indexOf(".") < 0) {
+      return true;
+    } else if ($event.keyCode < 48 || $event.keyCode > 57) {
       return false;
     } else {
       return true;
