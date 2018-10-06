@@ -180,6 +180,22 @@ export class FormComponent implements OnInit {
     };
     this.fields.push(FieldData.fromJson(fileField));
 
+    let decimalField = {
+      id: "decimalId",
+      name: "decimal",
+      type: FieldType.DECIMAL,
+      value: null,
+      isRequired: true,
+      readonly: this.readonly,
+      maxlength: 10,
+      label: "Decimal",
+      placeholder: "Decimal",
+      smallText: "This is a small text for Decimal",
+      help: "This is a help text for Decimal",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(decimalField));
+
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];
