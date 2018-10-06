@@ -1,0 +1,1 @@
+<button *ngIf="!readonly" [formGroup]="formGroup" type="{{buttonData.type}}" class="{{buttonData.buttonClass}}" [disabled]="buttonData.type === 'submit' && !formGroup.valid">{{buttonData.text}}</button>

@@ -1,14 +1,15 @@
 import { CardData } from "./card-data.model";
+import { ButtonData } from "./button-data.model";
 
 export class FormData {
 
     cards: CardData[];
-    submit: string = "Submit";
     readonly: boolean;
+    buttons: ButtonData[];
 
-    constructor(cards: CardData[], readonly: boolean, submit?: string) {
+    constructor(cards: CardData[], buttons: ButtonData[], readonly: boolean) {
         this.cards = cards;
+        this.buttons = buttons;
         this.readonly = readonly;
-        this.submit = submit;
     }
 }

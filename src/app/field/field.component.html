@@ -1,5 +1,5 @@
-<app-field-text *ngIf="fieldData.type === fieldType.TEXT || fieldData.type === fieldType.INTEGER || fieldData.type === fieldType.DOUBLE || fieldData.type === fieldType.CURRENCY || fieldData.type === fieldType.EMAIL"
-  [fieldData]="fieldData" [formGroup]="formGroup" [readonly]="readonly">
+<app-field-text *ngIf="fieldData.type === fieldType.TEXT || fieldData.type === fieldType.INTEGER || fieldData.type === fieldType.DECIMAL || fieldData.type === fieldType.EMAIL || fieldData.type === fieldType.DATE"
+  [fieldData]="fieldData" [formGroup]="formGroup" [readonly]="readonly" [type]="fieldData.type">
 </app-field-text>
 <app-field-dropdown *ngIf="fieldData.type === fieldType.DROPDOWN" [fieldData]="fieldData" [formGroup]="formGroup"
   [readonly]="readonly">
@@ -7,3 +7,6 @@
 <app-field-radio *ngIf="fieldData.type === fieldType.RADIO || fieldData.type === fieldType.CHECK" [fieldData]="fieldData"
   [formGroup]="formGroup" [readonly]="readonly">
 </app-field-radio>
+<app-field-file *ngIf="fieldData.type === fieldType.FILE"
+  [fieldData]="fieldData" [formGroup]="formGroup" [readonly]="readonly">
+</app-field-file>

@@ -9,6 +9,8 @@ import { FieldComponent } from './field/field.component';
 import { FieldTextComponent } from './field-types/field-text/field-text.component';
 import { FieldDropdownComponent } from './field-types/field-dropdown/field-dropdown.component';
 import { FieldRadioCheckComponent } from './field-types/field-radio-check/field-radio-check.component';
+import { FieldFileComponent } from './field-types/field-file/field-file.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { FieldRadioCheckComponent } from './field-types/field-radio-check/field-
     FieldComponent,
     FieldTextComponent,
     FieldDropdownComponent,
-    FieldRadioCheckComponent
+    FieldRadioCheckComponent,
+    FieldFileComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

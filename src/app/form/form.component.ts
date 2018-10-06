@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FieldData, FieldType } from '../form-model/field-data.model';
+import { FieldData } from '../form-model/field-data.model';
 import { CardData } from '../form-model/card-data.model';
 import { FormData } from '../form-model/form-data.model';
+import { ButtonData } from '../form-model/button-data.model';
+import { FieldType } from '../form-model/field-type.enum';
+import { ButtonType } from '../form-model/button-type.enum';
 
 @Component({
   selector: 'app-form',
@@ -17,6 +20,7 @@ export class FormComponent implements OnInit {
 
   constructor() {
     this.fields = [];
+
     let nameField = {
       id: "nameId",
       name: "name",
@@ -24,7 +28,7 @@ export class FormComponent implements OnInit {
       value: "John",
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Name",
       placeholder: "Name",
       smallText: "This is a small text for Name",
@@ -32,6 +36,23 @@ export class FormComponent implements OnInit {
       options: null
     };
     this.fields.push(FieldData.fromJson(nameField));
+
+    let integerField = {
+      id: "integerId",
+      name: "integer",
+      type: FieldType.INTEGER,
+      value: null,
+      isRequired: true,
+      readonly: this.readonly,
+      maxlength: 10,
+      label: "Integer",
+      placeholder: "Integer",
+      smallText: "This is a small text for Integer",
+      help: "This is a help text for Integer",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(integerField));
+
     let lastnameField = {
       id: "lastnameId",
       name: "lastname",
@@ -39,7 +60,7 @@ export class FormComponent implements OnInit {
       value: "Doe",
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Last Name",
       placeholder: "Last Name",
       smallText: "This is a small text for Last Name",
@@ -47,6 +68,7 @@ export class FormComponent implements OnInit {
       options: null
     };
     this.fields.push(FieldData.fromJson(lastnameField));
+
     let dropdownField = {
       id: "dropdownId",
       name: "dropdown",
@@ -54,7 +76,7 @@ export class FormComponent implements OnInit {
       value: 2,
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Dropdown",
       placeholder: "Dropdown",
       smallText: "This is a small text for Dropdown",
@@ -71,6 +93,7 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(dropdownField));
+
     let radioField = {
       id: "radioId",
       name: "radio",
@@ -78,7 +101,7 @@ export class FormComponent implements OnInit {
       value: 2,
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Radio",
       placeholder: "Radio",
       smallText: "This is a small text for Radio",
@@ -95,6 +118,7 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(radioField));
+
     let checkField = {
       id: "checkId",
       name: "check",
@@ -102,7 +126,7 @@ export class FormComponent implements OnInit {
       value: 2,
       isRequired: true,
       readonly: this.readonly,
-      maxLength: 250,
+      maxlength: 250,
       label: "Check",
       placeholder: "Check",
       smallText: "This is a small text for Check",
@@ -119,10 +143,68 @@ export class FormComponent implements OnInit {
       }]
     };
     this.fields.push(FieldData.fromJson(checkField));
+
+    let dateField = {
+      id: "dateId",
+      name: "date",
+      type: FieldType.DATE,
+      value: "31/12/2018",
+      isRequired: true,
+      readonly: this.readonly,
+      maxlength: 10,
+      label: "Date",
+      placeholder: "mm/dd/yyyy",
+      smallText: "This is a small text for Date",
+      help: "This is a help text for Date",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(dateField));
+
+    let defaultValuesField: FieldData = new FieldData("defaultValuesField");
+    defaultValuesField.label = "Field with default values";
+    this.fields.push(defaultValuesField);
+
+    let fileField = {
+      id: "fileId",
+      name: "file",
+      type: FieldType.FILE,
+      value: null,
+      isRequired: true,
+      readonly: this.readonly,
+      maxlength: null,
+      label: "File",
+      placeholder: "Choose a file",
+      smallText: "This is a small text for File",
+      help: "This is a help text for File",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(fileField));
+
+    let decimalField = {
+      id: "decimalId",
+      name: "decimal",
+      type: FieldType.DECIMAL,
+      value: null,
+      isRequired: true,
+      readonly: this.readonly,
+      maxlength: 10,
+      label: "Decimal",
+      placeholder: "Decimal",
+      smallText: "This is a small text for Decimal",
+      help: "This is a help text for Decimal",
+      options: null
+    };
+    this.fields.push(FieldData.fromJson(decimalField));
+
     let cards: CardData[] = [
       new CardData(this.fields, this.readonly, "This is a card header", "This is a card title", "This is a card text")
     ];
-    this.formData = new FormData(cards, this.readonly, "Submit this!")
+
+    let buttons: ButtonData[] = [];
+    buttons.push(ButtonData.fromJson({ type: ButtonType.SUBMIT, text: "Submit" }));
+    buttons.push(ButtonData.fromJson({ type: ButtonType.BUTTON, text: "Toggle Readonly Mode" }));
+
+    this.formData = new FormData(cards, buttons, false);
     this.formGroup = new FormGroup({});
     this.formData.cards.forEach(card => {
       card.fields.forEach(field => {
@@ -131,7 +213,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.formData.readonly = this.readonly;
     this.initReadonlyMode();
   }
